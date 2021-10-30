@@ -1,0 +1,28 @@
+.form {
+  background: rgb(167, 146, 102);
+  display: flex;
+  flex-direction: column;
+  border: solid 3px grey;
+  border-radius: 8px;
+  height: 300px;
+  width: 350px;
+  padding: 20px;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.formButton {
+  width: max-content;
+  padding: 4px 12px;
+  font-size: 18px;
+  margin: 20px;
+  background: white;
+  border: solid 2px grey;
+  border-radius: 6px;
+}
+
+.formButton:hover,
+.formButton:focus {
+  background: rgb(145, 111, 72);
+  color: white;
+}
