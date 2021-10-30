@@ -1,9 +1,9 @@
-import { setFilter } from "../../redux/actions";
+import setFilter from "../../redux/contacts/contacts-actions";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./FilterInput.module.css";
 
 const FilterInput = () => {
-  const filter = useSelector((state) => state.filter);
+  const filter = useSelector((state) => state.contacts.filter);
   const dispatch = useDispatch();
   const setFilterInput = ({ target }) => {
     const input = target.value;

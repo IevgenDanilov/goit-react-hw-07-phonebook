@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addToContacts } from "../../redux/actions";
+import { addToContacts } from "../../redux/contacts/contacts-operations";
 
 import { useState } from "react";
 import Label from "./Label";
@@ -7,7 +7,7 @@ import styles from "./Form.module.css";
 
 const Form = () => {
   const [state, setState] = useState({ name: "", number: "" });
-  const contacts = useSelector((store) => store.items);
+  const contacts = useSelector((store) => store.contacts.items);
   const dispatch = useDispatch();
 
   const addContact = (name, number) => {

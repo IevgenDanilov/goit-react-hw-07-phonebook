@@ -1,15 +1,23 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { removeFromContacts } from "../../redux/actions";
+import {
+  getContacts,
+  removeContact,
+} from "../../redux/contacts/contacts-operations";
 
 import styles from "./ContactsList.module.css";
 
 const ContactsList = () => {
   const dispatch = useDispatch();
   const [newList, setNewList] = useState([]);
-  const contacts = useSelector((state) => state.items);
-  const filter = useSelector((state) => state.filter);
+  const contacts = useSelector((state) => state.contacts.items);
+  const filter = useSelector((state) => state.contacts.filter);
+
+  useEffect(() => {
+    const actionFunc = getContacts();
+    dispatch(actionFunc);
+  }, [dispatch]);
 
   useEffect(() => {
     const newList = contacts.filter((item) => {
@@ -24,7 +32,7 @@ const ContactsList = () => {
   }, [contacts, filter]);
 
   const onDelete = (id) => {
-    dispatch(removeFromContacts(id));
+    dispatch(removeContact(id));
   };
   if (newList.length !== 0) {
     const listMarkup = newList.map((item) => {
