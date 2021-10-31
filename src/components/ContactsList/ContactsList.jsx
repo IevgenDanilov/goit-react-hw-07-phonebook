@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import {
+  getAllContacts,
+  getFilter,
+} from "../../redux/contacts/contacts-selectors";
 
 import {
   getContacts,
@@ -11,8 +15,8 @@ import styles from "./ContactsList.module.css";
 const ContactsList = () => {
   const dispatch = useDispatch();
   const [newList, setNewList] = useState([]);
-  const contacts = useSelector((state) => state.contacts.items);
-  const filter = useSelector((state) => state.contacts.filter);
+  const contacts = useSelector(getAllContacts);
+  const filter = useSelector(getFilter);
 
   useEffect(() => {
     const actionFunc = getContacts();
