@@ -1,7 +1,8 @@
 // import { nanoid } from "nanoid";
-import { createReducer } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
+import { createReducer, combineReducers } from "@reduxjs/toolkit";
+// import { combineReducers } from "redux";
 
+// import { setFilter } from "./contacts-actions";
 import actions from "./contacts-actions";
 
 const initialStore = {
@@ -43,17 +44,25 @@ const loadingReducer = createReducer(false, {
   [actions.getContactsRequest]: () => true,
   [actions.getContactsSuccess]: () => false,
   [actions.getContactsError]: () => false,
+  [actions.addContactRequest]: () => true,
+  [actions.addContactSuccess]: () => false,
+  [actions.addContactError]: () => false,
+  [actions.removeContactRequest]: () => true,
+  [actions.removeContactSuccess]: () => false,
+  [actions.removeContactError]: () => false,
 });
 
 const errorReducer = createReducer(null, {
-  [actions.getContactsSuccess]: () => null,
-  [actions.getContactsError]: (_, payload) => payload,
+  [actions.getContactsError]: (_, { payload }) => payload,
+  [actions.getContactsRequest]: () => null,
+  [actions.addContactError]: (_, { payload }) => payload,
+  [actions.addContactRequest]: () => null,
+  [actions.removeContactError]: (_, { payload }) => payload,
+  [actions.removeContactRequest]: () => null,
 });
 
 export const reducerFilter = createReducer(initialStore.contacts.filter, {
-  [actions.setFilter]: (store, { payload }) => {
-    return payload;
-  },
+  [actions.setFilter]: (_, { payload }) => payload,
 });
 
 export const rootReducer = combineReducers({
